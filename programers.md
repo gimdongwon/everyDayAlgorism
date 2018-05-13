@@ -51,3 +51,76 @@ console.log( alpha_string46("a234") );
 ```
 
 >나는 이문제가 왜이리 어렵지 계속 풀어보자
+
+### 문자열 다루기
+
+```js
+function evenOrOdd(num) {
+  var result = ''
+  if(parseInt(num)%2===0){
+    return "Even"
+  }else{
+      return "Odd"
+  }
+}
+
+// 아래는 테스트로 출력해 보기 위한 코드입니다.
+console.log("결과 : " + evenOrOdd(2));
+console.log("결과 : " + evenOrOdd(3));
+```
+
+### 행렬의 덧셈
+
+행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 같은 열의 값을 서로 더한 결과가 됩니다.
+ 2개의 행렬을 입력받는 sumMatrix 함수를 완성하여 행렬 덧셈의 결과를 반환해 주세요.
+예를 들어 2x2 행렬인 A = ((1, 2), (2, 3)), B = ((3, 4), (5, 6)) 가 주어지면, 
+같은 2x2 행렬인 ((4, 6), (7, 9))를 반환하면 됩니다.(어떠한 행렬에도 대응하는 함수를 완성해주세요.)
+
+```js
+
+function sumMatrix(A,B){
+
+var answer = Array();
+  for(var i = 0; i < A.length; i++){
+    answer[i] = [];
+      for(var j = 0; j < A[i].length; j++){
+        answer[i][j] = A[i][j] + B[i][j];
+      }
+    }
+  return answer;
+}
+
+// 아래는 테스트로 출력해 보기 위한 코드입니다.
+console.log(sumMatrix([[1,2], [2,3]], [[3,4],[5,6]]))
+
+```
+
+### 뭐지? parseInt
+
+```js
+행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 같은 열의 값을 서로 더한 결과가 됩니다.
+ 2개의 행렬을 입력받는 sumMatrix 함수를 완성하여 행렬 덧셈의 결과를 반환해 주세요.
+예를 들어 2x2 행렬인 A = ((1, 2), (2, 3)), B = ((3, 4), (5, 6)) 가 주어지면, 같은 2x2 행렬인 ((4, 6), (7, 9))를 반환하면 됩니다.(어떠한 행렬에도 대응하는 함수를 완성해주세요.)
+```
+
+### 약수 합하기
+
+Level 1
+어떤 수를 입력받아 그 수의 약수를 모두 더한 수 sumDivisor 함수를 완성해 보세요. 
+예를 들어 12가 입력된다면 12의 약수는 [1, 2, 3, 4, 6, 12]가 되고, 총 합은 28이 되므로 28을 반환해 주면 됩니다.
+
+```js
+function sumDivisor(num) {
+var answer = 0;
+    let divisor;
+    for(let i=1; i<=num;i++){
+        if(num%i===0){
+            answer += i;
+        }
+    }
+return answer;
+}
+
+// 아래는 테스트로 출력해 보기 위한 코드입니다.
+console.log(sumDivisor(12));
+```
