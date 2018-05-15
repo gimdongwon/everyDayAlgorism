@@ -106,7 +106,7 @@ console.log(sumMatrix([[1,2], [2,3]], [[3,4],[5,6]]))
 ### 약수 합하기
 
 Level 1
-어떤 수를 입력받아 그 수의 약수를 모두 더한 수 sumDivisor 함수를 완성해 보세요. 
+어떤 수를 입력받아 그 수의 약수를 모두 더한 수 sumDivisor 함수를 완성해 보세요.
 예를 들어 12가 입력된다면 12의 약수는 [1, 2, 3, 4, 6, 12]가 되고, 총 합은 28이 되므로 28을 반환해 주면 됩니다.
 
 ```js
@@ -123,4 +123,104 @@ return answer;
 
 // 아래는 테스트로 출력해 보기 위한 코드입니다.
 console.log(sumDivisor(12));
+```
+
+### 역삼각형 출력하기
+
+printReversedTriangle 메소드는 양의 정수 num을 매개변수로 입력받습니다.
+다음을 참고해 *(별)로 높이가 num인 삼각형을 문자열로 리턴하는 printReversedTriangle 메소드를 완성하세요
+
+높이(num)가 3일때 다음과 같은 문자열을 리턴하면 됩니다.
+
+```js
+***
+**
+*
+```
+
+```js
+function printReversedTriangle(num) {
+  var result = ''
+  // 함수를 완성하세요
+   for(let i=num; i>0; i--){
+        result +='*'.repeat(i)+`\n`;
+    } 
+    return result;
+}
+
+
+// 아래는 테스트로 출력해 보기 위한 코드입니다.
+console.log("결과 : " +'\n'+ printReversedTriangle(3));
+```
+
+### 김서방 찾기
+
+findKim 함수(메소드)는 String형 배열 seoul을 매개변수로 받습니다.
+
+seoul의 element중 Kim의 위치 x를 찾아, 김서방은 x에 있다는 String을 반환하세요.
+seoul에 Kim은 오직 한 번만 나타나며 잘못된 값이 입력되는 경우는 없습니다.
+
+```js
+function findKim(seoul){
+  var idx = 0;
+  //함수를 완성하세요
+    idx = seoul.indexOf("Kim");
+  return "김서방은 " + idx + "에 있다";
+}
+
+// 실행을 위한 테스트코드입니다.
+console.log( findKim(["Queen", "Tod", "Kim"]));
+```
+
+### 평균구하기
+
+함수를 완성해서 매개변수 array의 평균값을 return하도록 만들어 보세요.
+어떠한 크기의 array가 와도 평균값을 구할 수 있어야 합니다.
+
+```js
+function average(array){
+  //함수를 완성하세요
+
+  return array.reduce((item,acc)=>item + acc,0) / (array.length);
+}
+
+
+// 아래는 테스트로 출력해 보기 위한 코드입니다.
+var testArray = [5,3,4]
+console.log("평균값 : " + average(testArray));
+```
+
+### 별찍기
+
+printTriangle 메소드는 양의 정수 num을 매개변수로 입력받습니다.
+다음을 참고해 *(별)로 높이가 num인 삼각형을 문자열로 리턴하는 printTriangle 메소드를 완성하세요
+printTriangle이 return하는 String은 개행문자('\n')로 끝나야 합니다.
+
+```
+높이가 3일때
+
+*
+**
+***
+높이가 5일때
+
+*
+**
+***
+****
+*****
+```
+
+```js
+function printTriangle(num) {
+  let result = '';
+    for (let i=1; i<=num;i++){
+   result += ('*'.repeat(i)+'\n');
+  }
+    return result;
+}
+
+
+// 아래는 테스트로 출력해 보기 위한 코드입니다.
+console.log( printTriangle(3) );
 ```
