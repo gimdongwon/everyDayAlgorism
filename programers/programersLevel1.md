@@ -352,3 +352,136 @@ function solution(n) {
 }
 solution(118372);
 ```
+
+## 문자열 내 마음대로 정렬하기
+
+문자열로 구성된 리스트 strings 와, 정수 n 이 주어졌을 때, 각 문자열의 인덱스 n 번째 글자를 기준으로 오름차순 정렬하려 합니다. 예를 들어 strings 가 [sun, bed, car]이고 n 이 1 이면 각 단어의 인덱스 1 의 문자 u, e, a 로 strings 를 정렬합니다.
+
+### 제한 조건
+
+strings 는 길이 1 이상, 50 이하인 배열입니다.
+strings 의 원소는 소문자 알파벳으로 이루어져 있습니다.
+strings 의 원소는 길이 1 이상, 100 이하인 문자열입니다.
+모든 strings 의 원소의 길이는 n 보다 큽니다.
+인덱스 1 의 문자가 같은 문자열이 여럿 일 경우, 사전순으로 앞선 문자열이 앞쪽에 위치합니다.
+
+### 입출력 예
+
+strings n return
+[sun, bed, car] 1 [car, bed, sun][abce, abcd, cdx] 2 [abcd, abce, cdx]
+입출력 예 설명
+입출력 예 1
+sun, bed, car 의 1 번째 인덱스 값은 각각 u, e, a 입니다. 이를 기준으로 strings 를 정렬하면 [car, bed, sun] 입니다.
+
+### 입출력 예 2
+
+abce 와 abcd, cdx 의 2 번째 인덱스 값은 c, c, x 입니다. 따라서 정렬 후에는 cdx 가 가장 뒤에 위치합니다. abce 와 abcd 는 사전순으로 정렬하면 abcd 가 우선하므로, 답은 [abcd, abce, cdx] 입니다.
+
+```js
+실패함;
+function solution(strings, n) {
+  let newList = [];
+  let compareList = [];
+  let resultList = [];
+  for (let i = 0; i < strings.length; i++) {
+    newList.push(strings[i][n]);
+    compareList.push(strings[i][n]);
+  }
+  let newCompareList = compareList.sort();
+  for (let i = 0; i < strings.length; i++) {
+    if (newCompareList[i] === newCompareList[i + 1]) {
+      let lastList = [strings[i], strings[i + 1]].sort();
+      resultList.push(lastList[0], lastList[1]);
+      i++;
+    } else {
+      resultList.push(strings[newList.indexOf(newCompareList[i])]);
+    }
+  }
+  return resultList;
+}
+```
+
+## 제일 작은 수 제거하기
+
+정수를 저장한 배열, arr 에서 가장 작은 수를 제거한 배열을 리턴하는 함수, solution 을 완성해주세요. 단, 리턴하려는 배열이 빈 배열인 경우엔 배열에 -1 을 채워 리턴하세요. 예를들어 arr 이 [4,3,2,1]인 경우는 [4,3,2]를 리턴 하고, [10]면 [-1]을 리턴 합니다.
+
+### 제한 조건
+
+arr 은 길이 1 이상인 배열입니다.
+인덱스 i, j 에 대해 i ≠ j 이면 arr[i] ≠ arr[j] 입니다.
+
+### 입출력 예
+
+arr return
+[4,3,2,1][4,3,2]
+[10][-1]
+
+```js
+function solution(arr) {
+  const min = Math.min(...arr);
+  return arr.length !== 1 ? arr.filter(i => i !== min) : [-1];
+}
+```
+
+## 문자열 내림차순으로 배치하기
+
+문자열 s 에 나타나는 문자를 큰것부터 작은 순으로 정렬해 새로운 문자열을 리턴하는 함수, solution 을 완성해주세요.
+s 는 영문 대소문자로만 구성되어 있으며, 대문자는 소문자보다 작은 것으로 간주합니다.
+
+### 제한 사항
+
+str 은 길이 1 이상인 문자열입니다.
+
+### 입출력 예
+
+s return
+Zbcdefg gfedcbZ
+
+```js
+function solution(s) {
+  return [...s]
+    .sort()
+    .reverse()
+    .join("");
+}
+```
+
+## 같은 숫자는 싫어
+
+문제 설명
+배열 arr 가 주어집니다. 배열 arr 의 각 원소는 숫자 0 부터 9 까지로 이루어져 있습니다. 이때, 배열 arr 에서 연속적으로 나타나는 숫자는 하나만 남기고 전부 제거하려고 합니다. 배열 arr 에서 제거 되고 남은 수들을 return 하는 solution 함수를 완성해 주세요. 단, 제거된 후 남은 수들을 반환할 때는 배열 arr 의 원소들의 순서를 유지해야 합니다.
+예를들면
+
+arr = [1, 1, 3, 3, 0, 1, 1] 이면 [1, 3, 0, 1] 을 return 합니다.
+arr = [4, 4, 4, 3, 3] 이면 [4, 3] 을 return 합니다.
+배열 arr 에서 연속적으로 나타나는 숫자는 제거하고 남은 수들을 return 하는 solution 함수를 완성해 주세요.
+
+### 제한사항
+
+배열 arr 의 크기 : 1,000,000 이하의 자연수
+배열 arr 의 원소의 크기 : 0 보다 크거나 같고 9 보다 작거나 같은 정수
+
+### 입출력 예
+
+arr answer
+[1,1,3,3,0,1,1][1,3,0,1]
+[4,4,4,3,3][4,3]
+
+### 입출력 예 설명
+
+입출력 예 #1,2
+문제의 예시와 같습니다.
+
+```js
+function solution(s) {
+  let before;
+  const newArray = [];
+  for (let i = 0; i < s.length; i++) {
+    if (before !== s[i]) {
+      newArray.push(s[i]);
+    }
+    before = s[i];
+  }
+  return newArray;
+}
+```
