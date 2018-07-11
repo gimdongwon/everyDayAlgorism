@@ -485,3 +485,190 @@ function solution(s) {
   return newArray;
 }
 ```
+
+## 2016 년
+
+### 문제 설명
+
+2016 년 1 월 1 일은 금요일입니다. 2016 년 a 월 b 일은 무슨 요일일까요? 두 수 a ,b 를 입력받아 2016 년 a 월 b 일이 무슨 요일인지 리턴하는 함수, solution 을 완성하세요. 요일의 이름은 일요일부터 토요일까지 각각 SUN,MON,TUE,WED,THU,FRI,SAT
+
+입니다. 예를 들어 a=5, b=24 라면 5 월 24 일은 화요일이므로 문자열 TUE 를 반환하세요.
+
+### 제한 조건
+
+2016 년은 윤년입니다.
+2016 년 a 월 b 일은 실제로 있는 날입니다. (13 월 26 일이나 2 월 45 일같은 날짜는 주어지지 않습니다)
+
+### 입출력 예
+
+a b result
+5 24 TUE
+
+```js
+// 1,2,3,4,5,6,7,8,9,10,11,12
+// 31,29,31,30,31,30,31,31,30,31,30,31
+
+// 1month = 31
+// 2month = 60
+// 3month = 91
+// 4month = 121
+// 5month = 152
+// 6month = 182
+// 7month = 213
+// 8month = 244
+// 9month = 274
+// 10month = 305
+// 11month = 335
+// 12month = 365
+
+// 5month 4day
+// month + day = 152 + 4 = 156
+
+// 156 % 7 = 2 => sunday
+// %7 = 1 => saturday
+// %7 = 2 => sunday
+// %7 = 3 => monday
+// %7 = 4 => tuesday
+// %7 = 5 => wednesday
+// %7 = 6 => thursday
+// %7 = 7 => firday
+
+// 0< month <13
+// 0< day < 32
+
+// 1,3,5,7,8,10,12 는 31일
+// 2 29일
+// 4,6,9,11 30일
+
+function solution(month, day) {
+  let transMonth;
+  let sum;
+  let answer = "";
+  if (day > 31 || day < 1) {
+    return answer;
+  } else {
+    switch (month) {
+      case (month = 1):
+        transMonth = day;
+        sum = transMonth % 7;
+        break;
+
+      case (month = 3):
+        transMonth = day + 60;
+        sum = transMonth % 7;
+        break;
+
+      case (month = 5):
+        transMonth = day + 121;
+        sum = transMonth % 7;
+        break;
+
+      case (month = 7):
+        transMonth = day + 182;
+        sum = transMonth % 7;
+        break;
+
+      case (month = 8):
+        transMonth = day + 213;
+        sum = transMonth % 7;
+        break;
+
+      case (month = 10):
+        transMonth = day + 274;
+        sum = transMonth % 7;
+        break;
+
+      case (month = 12):
+        transMonth = day + 335;
+        sum = transMonth % 7;
+        break;
+
+      case (month = 2):
+        if (day < 30) {
+          transMonth = day + 31;
+          sum = transMonth % 7;
+          break;
+        } else {
+          return answer;
+        }
+
+      case (month = 6):
+        if (day < 31) {
+          transMonth = day + 152;
+          sum = transMonth % 7;
+          break;
+        } else {
+          return answer;
+        }
+      case (month = 9):
+        if (day < 31) {
+          transMonth = day + 244;
+          sum = transMonth % 7;
+          break;
+        } else {
+          return answer;
+        }
+
+      case (month = 4):
+        if (day < 31) {
+          transMonth = day + 91;
+          sum = transMonth % 7;
+          break;
+        } else {
+          return answer;
+        }
+
+      case (month = 11):
+        if (day < 31) {
+          transMonth = day + 305;
+          sum = transMonth % 7;
+          break;
+        } else {
+          return answer;
+        }
+    }
+
+    switch (sum) {
+      case (sum = 1):
+        answer = "FRI";
+        break;
+
+      case (sum = 2):
+        answer = "SAT";
+        break;
+
+      case (sum = 3):
+        answer = "SUN";
+        break;
+
+      case (sum = 4):
+        answer = "MON";
+        break;
+
+      case (sum = 5):
+        answer = "TUE";
+        break;
+
+      case (sum = 6):
+        answer = "WED";
+        break;
+
+      case (sum = 0):
+        answer = "THR";
+        break;
+    }
+    return answer;
+  }
+}
+
+solution(5, 24);
+```
+
+```js
+function solution(a, b) {
+  return new Date(2016, a - 1, b)
+    .toDateString()
+    .slice(0, 3)
+    .toUpperCase();
+}
+```
