@@ -732,6 +732,7 @@ function solution(s) {
     : s.slice(Math.trunc(s.length / 2) - 1, Math.trunc(s.length / 2) + 1);
 }
 ```
+
 ## 소수 찾기
 
 ### 문제 설명
@@ -775,6 +776,46 @@ function solution(n) {
     }
     return result;
 }
+
+근환형님 도움을 받앗다. 효율성 문제에서 부딪혔었는데 다른 접근법으로 풀어주심
+
+생각지 못한 코드였고 ++i의 효율성에 대해서도 배웠다.
+
+빈 token 배열에 index값을 숫자로 인식하여 answer에만 답을 삽입하는 방식이다.
+
+굉장히 특이하다. 이런 접근법도 있구나
+
+그래서 소수의 배수들을 index를 통해서 다 값이 들어있게 만들고 아닐때만 push 이벤트가 일어난다.
+
+이것이 효율성이 가장 높다라는 것도 놀랍다.
+
+이정도면 거의 공식등록해야될듯?
+
+function solution(n) {
+            // '소수의 배수는 소수가 아니다' 라는 생각을 갖고 알고리즘을 푸는게 핵심
+            // token은 소수를 판별할 장치
+            // token이 false이면 소수이다.
+            let token = []
+            // answer는 소수를 담을 빈 배열
+            let answer = [];
+            for (let i = 2; i <= n; ++i) {
+                // token[i]가 false일 때 
+                // token이 빈 배열인데 token[i]에 대해서 의아해 할 수 있다.
+                // 빈배열의 경우 해당 인덱스에 값을 지정하면 해당 인덱스에 값이 들어간다.
+                if (!token[i]) {
+                    // answer의 배열에 i를 넣는다.
+                    answer.push(i);
+                    for (let j = i * 2; j <= n; j += i) {
+                        // 소수의 배수는 소수가 아니기에 true를 준다.
+                        token[j] = true;
+                    }
+                }
+            }
+    
+            return answer.length; // 정답 반환
+        }
+        // 소수를 구하는 것은 자기자신보다 낮은 수로 나누어보면 판별할 수 있다.
+        // 다만, 효율성의 문제에 있어서 소수의 곱을 또 계산한다면 큰 수에서는 비효율적인 계산이라 할 수 있다.
 ```
 
 ## 자연수 뒤집어 배열로 만들기
