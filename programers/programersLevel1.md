@@ -399,6 +399,10 @@ function solution(strings, n) {
   }
   return resultList;
 }
+
+function solution(strings, n) {
+    return strings.sort((s1, s2) => s1[n] === s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n]));
+}
 ```
 
 ## 제일 작은 수 제거하기
@@ -737,27 +741,28 @@ function solution(s) {
 
 ### 문제 설명
 
-1부터 입력받은 숫자 n 사이에 있는 소수의 개수를 반환하는 함수, solution을 만들어 보세요.
+1 부터 입력받은 숫자 n 사이에 있는 소수의 개수를 반환하는 함수, solution 을 만들어 보세요.
 
-소수는 1과 자기 자신으로만 나누어지는 수를 의미합니다.
-(1은 소수가 아닙니다.)
+소수는 1 과 자기 자신으로만 나누어지는 수를 의미합니다.
+(1 은 소수가 아닙니다.)
 
 ### 제한 조건
 
-n은 2이상 1000000이하의 자연수입니다.
+n 은 2 이상 1000000 이하의 자연수입니다.
 
 ### 입출력 예
-n	result
-10	4
-5	3
+
+n result
+10 4
+5 3
 
 ### 입출력 예 설명
 
 입출력 예 #1
-1부터 10 사이의 소수는 [2,3,5,7] 4개가 존재하므로 4를 반환
+1 부터 10 사이의 소수는 [2,3,5,7] 4 개가 존재하므로 4 를 반환
 
 입출력 예 #2
-1부터 5 사이의 소수는 [2,3,5] 3개가 존재하므로 3를 반환
+1 부터 5 사이의 소수는 [2,3,5] 3 개가 존재하므로 3 를 반환
 
 ```js
 풀긴 했으나 시간 초과가 나왔다... 효율성 부분에서 떨어지는듯
@@ -799,7 +804,7 @@ function solution(n) {
             // answer는 소수를 담을 빈 배열
             let answer = [];
             for (let i = 2; i <= n; ++i) {
-                // token[i]가 false일 때 
+                // token[i]가 false일 때
                 // token이 빈 배열인데 token[i]에 대해서 의아해 할 수 있다.
                 // 빈배열의 경우 해당 인덱스에 값을 지정하면 해당 인덱스에 값이 들어간다.
                 if (!token[i]) {
@@ -811,7 +816,7 @@ function solution(n) {
                     }
                 }
             }
-    
+
             return answer.length; // 정답 반환
         }
         // 소수를 구하는 것은 자기자신보다 낮은 수로 나누어보면 판별할 수 있다.
@@ -822,30 +827,134 @@ function solution(n) {
 
 ### 문제 설명
 
-자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해주세요. 예를들어 n이 12345이면 [5,4,3,2,1]을 리턴합니다.
+자연수 n 을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해주세요. 예를들어 n 이 12345 이면 [5,4,3,2,1]을 리턴합니다.
 
 ### 제한 조건
 
-n은 10,000,000,000이하인 자연수입니다.
+n 은 10,000,000,000 이하인 자연수입니다.
 
 ### 입출력 예
 
-n	return
-12345	[5,4,3,2,1]
+n return
+12345 [5,4,3,2,1]
 
 ```js
 function solution(n) {
-    let result = [];
-    let newChar = Array.from(n.toString()).reverse();
-    for (let i=0; i<newChar.length; i++){
-        result.push(parseInt(newChar[i]))
-    }
-    return result;
+  let result = [];
+  let newChar = Array.from(n.toString()).reverse();
+  for (let i = 0; i < newChar.length; i++) {
+    result.push(parseInt(newChar[i]));
+  }
+  return result;
 }
 ```
 
 ```js
 function solution(n) {
-    return Array.from(n.toString()).reverse().map(item=>parseInt(item));
+  return Array.from(n.toString())
+    .reverse()
+    .map(item => parseInt(item));
+}
+```
+
+## 나누어 떨어지는 수
+
+array 의 각 element 중 divisor 로 나누어 떨어지는 값을 오름차순으로 정렬한 배열을 반환하는 함수, solution 을 작성해주세요.
+divisor 로 나누어 떨어지는 element 가 하나도 없다면 배열에 -1 을 담아 반환하세요.
+
+### 제한사항
+
+- arr 은 자연수를 담은 배열입니다.
+- 정수 i, j 에 대해 i ≠ j 이면 arr[i] ≠ arr[j] 입니다.
+- divisor 는 자연수입니다.
+- array 는 길이 1 이상인 배열입니다.
+  
+### 입출력 예
+
+  arr divisor return
+  [5, 9, 7, 10] 5 [5, 10][2, 36, 1, 3] 1 [1, 2, 3, 36][3,2,6] 10 [-1]
+
+### 입출력 예 설명
+
+입출력 예#1
+arr 의 원소 중 5 로 나누어 떨어지는 원소는 5 와 10 입니다. 따라서 [5, 10]을 리턴합니다.
+
+입출력 예#2
+arr 의 모든 원소는 1 으로 나누어 떨어집니다. 원소를 오름차순으로 정렬해 [1, 2, 3, 36]을 리턴합니다.
+
+입출력 예#3
+3, 2, 6 은 10 으로 나누어 떨어지지 않습니다. 나누어 떨어지는 원소가 없으므로 [-1]을 리턴합니다.
+
+```js
+function solution(arr, n) {
+  let answer = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % n === 0) {
+      answer.push(arr[i]);
+    }
+  }
+  return answer[0] === undefined ? [-1] : answer.sort((x, y) => x - y);
+}
+```
+
+## 시저암호
+
+어떤 문장의 각 알파벳을 일정한 거리만큼 밀어서 다른 알파벳으로 바꾸는 암호화 방식을 시저 암호라고 합니다. 예를 들어 AB는 1만큼 밀면 BC가 되고, 3만큼 밀면 DE가 됩니다. z는 1만큼 밀면 a가 됩니다. 문자열 s와 거리 n을 입력받아 s를 n만큼 민 암호문을 만드는 함수, solution을 완성해 보세요.
+
+### 제한 조건
+
+공백은 아무리 밀어도 공백입니다.
+s는 알파벳 소문자, 대문자, 공백으로만 이루어져 있습니다.
+s의 길이는 8000이하입니다.
+n은 1 이상, 25이하인 자연수입니다.
+
+### 입출력 예
+
+s	n	result
+AB	1	BC
+z	1	a
+a B z	4	e F d
+
+```js
+function solution (s,n){
+  
+  const newChar = [...s]
+  const answer = []
+  
+  for(let i=0; i<newChar.length; i++){
+    let newNum = newChar[i].charCodeAt()+ n
+    if(newNum>90&& newNum<97 || newNum > 122){
+      answer.push(String.fromCharCode(newNum-26))
+    }
+    else if(newNum-n===32){
+      answer.push(String.fromCharCode(newNum-n))
+    }
+    else{
+      answer.push(String.fromCharCode(newNum)) 
+    }
+  }
+    return answer.join("")
+}
+```
+
+## 이상한 문자 만들기
+
+```js
+function solution(s) {
+    let newArray = s.split(" ")
+    let answer = [];
+    for(let i=0; i<newArray.length; i++){
+        for(let j=0; j<newArray[i].length; j++){
+j%2==0 ? answer.push(newArray[i][j].toUpperCase()) : answer.push(newArray[i][j].toLowerCase())
+            if(j===newArray[i].length-1){
+                answer.push(" ");
+                if(i===newArray.length-1){
+                    answer.pop()
+                }
+            }
+        }   
+    }
+    
+    return answer.join("")
 }
 ```
