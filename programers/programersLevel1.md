@@ -401,7 +401,10 @@ function solution(strings, n) {
 }
 
 function solution(strings, n) {
-    return strings.sort((s1, s2) => s1[n] === s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n]));
+  return strings.sort(
+    (s1, s2) =>
+      s1[n] === s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n])
+  );
 }
 ```
 
@@ -868,11 +871,11 @@ divisor 로 나누어 떨어지는 element 가 하나도 없다면 배열에 -1 
 - 정수 i, j 에 대해 i ≠ j 이면 arr[i] ≠ arr[j] 입니다.
 - divisor 는 자연수입니다.
 - array 는 길이 1 이상인 배열입니다.
-  
+
 ### 입출력 예
 
-  arr divisor return
-  [5, 9, 7, 10] 5 [5, 10][2, 36, 1, 3] 1 [1, 2, 3, 36][3,2,6] 10 [-1]
+arr divisor return
+[5, 9, 7, 10] 5 [5, 10][2, 36, 1, 3] 1 [1, 2, 3, 36][3,2,6] 10 [-1]
 
 ### 입출력 예 설명
 
@@ -899,41 +902,38 @@ function solution(arr, n) {
 
 ## 시저암호
 
-어떤 문장의 각 알파벳을 일정한 거리만큼 밀어서 다른 알파벳으로 바꾸는 암호화 방식을 시저 암호라고 합니다. 예를 들어 AB는 1만큼 밀면 BC가 되고, 3만큼 밀면 DE가 됩니다. z는 1만큼 밀면 a가 됩니다. 문자열 s와 거리 n을 입력받아 s를 n만큼 민 암호문을 만드는 함수, solution을 완성해 보세요.
+어떤 문장의 각 알파벳을 일정한 거리만큼 밀어서 다른 알파벳으로 바꾸는 암호화 방식을 시저 암호라고 합니다. 예를 들어 AB 는 1 만큼 밀면 BC 가 되고, 3 만큼 밀면 DE 가 됩니다. z 는 1 만큼 밀면 a 가 됩니다. 문자열 s 와 거리 n 을 입력받아 s 를 n 만큼 민 암호문을 만드는 함수, solution 을 완성해 보세요.
 
 ### 제한 조건
 
 공백은 아무리 밀어도 공백입니다.
-s는 알파벳 소문자, 대문자, 공백으로만 이루어져 있습니다.
-s의 길이는 8000이하입니다.
-n은 1 이상, 25이하인 자연수입니다.
+s 는 알파벳 소문자, 대문자, 공백으로만 이루어져 있습니다.
+s 의 길이는 8000 이하입니다.
+n 은 1 이상, 25 이하인 자연수입니다.
 
 ### 입출력 예
 
-s	n	result
-AB	1	BC
-z	1	a
-a B z	4	e F d
+s n result
+AB 1 BC
+z 1 a
+a B z 4 e F d
 
 ```js
-function solution (s,n){
-  
-  const newChar = [...s]
-  const answer = []
-  
-  for(let i=0; i<newChar.length; i++){
-    let newNum = newChar[i].charCodeAt()+ n
-    if(newNum>90&& newNum<97 || newNum > 122){
-      answer.push(String.fromCharCode(newNum-26))
-    }
-    else if(newNum-n===32){
-      answer.push(String.fromCharCode(newNum-n))
-    }
-    else{
-      answer.push(String.fromCharCode(newNum)) 
+function solution(s, n) {
+  const newChar = [...s];
+  const answer = [];
+
+  for (let i = 0; i < newChar.length; i++) {
+    let newNum = newChar[i].charCodeAt() + n;
+    if ((newNum > 90 && newNum < 97) || newNum > 122) {
+      answer.push(String.fromCharCode(newNum - 26));
+    } else if (newNum - n === 32) {
+      answer.push(String.fromCharCode(newNum - n));
+    } else {
+      answer.push(String.fromCharCode(newNum));
     }
   }
-    return answer.join("")
+  return answer.join("");
 }
 ```
 
@@ -941,20 +941,71 @@ function solution (s,n){
 
 ```js
 function solution(s) {
-    let newArray = s.split(" ")
-    let answer = [];
-    for(let i=0; i<newArray.length; i++){
-        for(let j=0; j<newArray[i].length; j++){
-j%2==0 ? answer.push(newArray[i][j].toUpperCase()) : answer.push(newArray[i][j].toLowerCase())
-            if(j===newArray[i].length-1){
-                answer.push(" ");
-                if(i===newArray.length-1){
-                    answer.pop()
-                }
-            }
-        }   
+  let newArray = s.split(" ");
+  let answer = [];
+  for (let i = 0; i < newArray.length; i++) {
+    for (let j = 0; j < newArray[i].length; j++) {
+      j % 2 == 0
+        ? answer.push(newArray[i][j].toUpperCase())
+        : answer.push(newArray[i][j].toLowerCase());
+      if (j === newArray[i].length - 1) {
+        answer.push(" ");
+        if (i === newArray.length - 1) {
+          answer.pop();
+        }
+      }
     }
-    
-    return answer.join("")
+  }
+
+  return answer.join("");
+}
+```
+
+## x 만큼 간격이 있는 n 개의 숫자
+
+```js
+function solution(x, n) {
+  var answer = [];
+  for (let i = 1; i <= n; i++) {
+    answer.push(x * i);
+  }
+  return answer;
+}
+```
+
+## 콜라츠 추측
+
+```js
+function solution(num) {
+  let count = 0;
+  while (num != 1) {
+    if (num % 2 == 0) {
+      num = num / 2;
+      count++;
+    } else {
+      num = num * 3 + 1;
+      count++;
+    }
+  }
+  return count <= 500 ? count : -1;
+}
+```
+
+## 하샤드 수
+
+```js
+function solution(x) {
+  let answer = 0;
+  let num = x.toString().split("");
+  for (let i = 0; i < num.length; i++) {
+    answer += parseInt(num[i]);
+  }
+  return x % answer === 0 ? true : false;
+}
+
+function solution(x) {
+  let newNum = x.toString();
+  let answer = [...newNum].reduce((acc, item) => acc + parseInt(item), 0);
+  return x % answer === 0 ? true : false;
 }
 ```
