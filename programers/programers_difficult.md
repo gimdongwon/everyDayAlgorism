@@ -26,7 +26,7 @@ function gcdlcm(a, b) {
 console.log(gcdlcm(3,12));
 ```
 
-### 문자열 다루기
+## 문자열 다루기
 
 alpha_string46함수는 문자열 s를 매개변수로 입력받습니다.
 s의 길이가 4혹은 6이고, 숫자로만 구성되있는지 확인해주는 함수를 완성하세요.
@@ -47,3 +47,22 @@ console.log( alpha_string46("a234") );
 ```
 
 >나는 이문제가 왜이리 어렵지 계속 풀어보자
+
+## 예산(2018 summer 코딩)
+
+다 못품
+
+```js
+function solution(d, budget) {
+    let newArray = d.sort();
+    let result =0;
+    for(let i=0; i<newArray.length; i++){
+        result += newArray[i]
+        if(result===budget){
+            return i+1
+        }else if(result > budget){
+            return i
+        }
+    }
+}
+```
