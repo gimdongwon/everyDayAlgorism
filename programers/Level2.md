@@ -193,3 +193,21 @@ function solution(s) {
   return num == 0 ? true : false;
 }
 ```
+
+## 124 나라의 숫자
+
+```js
+function solution(n) {
+  let answer = [];
+
+  while (n > 0) {
+    let countNum = n % 3;
+    n = Math.floor(n / 3);
+    if (countNum === 0) {
+      n = n - 1;
+    }
+    answer.unshift(countNum);
+  }
+  return answer.join("").replace(/0/gi, "4");
+}
+```
