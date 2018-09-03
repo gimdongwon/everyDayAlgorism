@@ -211,3 +211,33 @@ function solution(n) {
   return answer.join("").replace(/0/gi, "4");
 }
 ```
+
+## 숫자의 표현
+
+```js
+function solution(num) {
+  let answer = 0,
+    sum = 0,
+    j;
+  for (let i = 1; i <= num; i++) {
+    (sum = 0), (j = i);
+    while (sum <= num) {
+      sum += j;
+      if (sum === num) answer++;
+      j++;
+    }
+  }
+  return answer;
+}
+
+function solution(num) {
+  let answer = 0;
+  for (let i = 1; i <= num; i++) {
+    if (num % i == 0 && i % 2 == 1) {
+      // 뭐냐ㅠ
+      answer++;
+    }
+  }
+  return answer;
+}
+```
