@@ -110,4 +110,63 @@ function solution(seoul) {
     if (seoul[i] === "Kim") return `김서방은 ${i}에 있다`;
   }
 }
+
+function solution(seoul) {
+  return `김서방은 ${seoul.indexOf("Kim")}에 있다`;
+}
+```
+
+### 소수찾기
+
+```js
+// 에라토스테네스의 체
+function solution(n) {
+  let newArray = [];
+  let result;
+  for (let i = 1; i <= n; i++) {
+    newArray.push(i);
+  }
+  for (let j = 2; j <= n; j++) {
+    if (newArray.includes(j)) {
+      result = newArray.filter(item => item % j !== 0);
+    }
+  }
+  return result;
+}
+```
+
+### 수박수박수박수박수박수박수박수박수박
+
+```js
+function solution(n) {
+  return n % 2 === 0
+    ? "수박".repeat(n / 2)
+    : "수박".repeat(Math.ceil(n / 2)).slice(0, Math.ceil(n));
+}
+
+function solution(n) {
+  return "수박".repeat(n / 2) + (n % 2 ? "수" : "");
+}
+
+function solution(n) {
+  return "수박".repeat(n).slice(0, n);
+}
+```
+
+### 문자열 정수로 바꾸기
+
+```js
+const solution = s => parseInt(s);
+```
+
+### 약수의 합
+
+```js
+const solution = n => {
+  let answer = 0;
+  for (let i = 1; i <= n; i++) {
+    if (n % i === 0) answer += i;
+  }
+  return answer;
+};
 ```
