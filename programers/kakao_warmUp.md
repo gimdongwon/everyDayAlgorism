@@ -270,3 +270,63 @@ const solution = arr => {
   return arr.length !== 1 ? arr.filter(i => i !== min) : [-1];
 };
 ```
+
+### 콜라츠 추측
+
+```js
+const solution = n => {
+  let count = 0;
+  while (n !== 1) {
+    n % 2 === 0 ? (n = n / 2) : (n = n * 3 + 1);
+    count++;
+    if (count >= 500) return -1;
+  }
+  return count;
+};
+```
+
+### 하샤드 수
+
+```js
+const solution = arr =>
+  arr % [...arr.toString()].reduce((acc, item) => parseInt(item) + acc, 0)
+    ? false
+    : true;
+```
+
+### 핸드폰 번호 가리기
+
+```js
+function hide_numbers(s) {
+  return s.replace(/\d(?=\d{4})/g, "*");
+}
+
+const solution = n => [...n].fill("*", 0, n.length - 4).join("");
+```
+
+### x 만큼 간격이 잇는 n 개의 숫자
+
+```js
+const solution = (x, n) => {
+  let result = [];
+  for (let i = 1; i <= n; i++) {
+    result.push(x * i);
+  }
+  return result;
+};
+```
+
+### 행렬의 덧셈
+
+```js
+const solution = (arr1, arr2) => {
+  let result = [];
+  for (let i = 0; i < arr1.length; i++) {
+    result[i] = [];
+    for (let j = 0; j < arr1[i].length; j++) {
+      result[i][j] = arr1[i][j] + arr2[i][j];
+    }
+  }
+  return result;
+};
+```
