@@ -50,7 +50,7 @@ function solution(arr, n) {
 }
 ```
 
-### 두 정수 사이의 합
+### 두 정수 사한의 합
 
 ```js
 function solution(a, b) {
@@ -168,5 +168,105 @@ const solution = n => {
     if (n % i === 0) answer += i;
   }
   return answer;
+};
+```
+
+### 시저암호
+
+```js
+const solution = (s, n) => {
+  let result = [];
+  const newChar = s.split("");
+  for (let i = 0; i < s.length; i++) {
+    let newNum = newChar[i].charCodeAt();
+    if (newNum !== 32 && newNum <= 90) {
+      result.push(
+        String.fromCharCode(newNum + n > 90 ? newNum + n - 26 : newNum + n)
+      );
+    } else if (newNum !== 32 && newNum <= 122) {
+      result.push(
+        String.fromCharCode(newNum + n > 122 ? newNum + n - 26 : newNum + n)
+      );
+    } else {
+      result.push(" ");
+    }
+  }
+  return result.join("");
+};
+```
+
+### 이상한 문자 만들기
+
+```js
+const solution = s => {
+  let answer = [];
+  let newStr = [...s];
+  answer.push(newStr[0].toUpperCase());
+  for (let i = 1; i < newStr.length; i++) {
+    // 이전것에 따라서 다음거를 업데이트 방식
+    // 그전것이 소문자이거나 빈칸이면 대문자
+    // 그전것이 대문자 이면 소문자
+    const newNum = answer[i - 1].charCodeAt();
+    if (newNum > 64 && newNum < 91) {
+      answer.push(newStr[i].toLowerCase());
+    } else if (answer[i - 1] === " " || (newNum > 96 && newNum < 123)) {
+      answer.push(newStr[i].toUpperCase());
+    } else if (newStr[i] === " ") answer.push(" ");
+  }
+  return answer.join("");
+};
+```
+
+## 자릿수 더하기
+
+```js
+const solution = n => {
+  const newN = n.toString().split("");
+  let answer = 0;
+  for (let i = 0; i < newN.length; i++) {
+    answer += parseInt(newN[i]);
+  }
+  return answer;
+};
+```
+
+### 자연수 뒤집어 배열로 만들기
+
+```js
+function solution(n) {
+  return Array.from(n.toString())
+    .reverse()
+    .map(item => parseInt(item));
+}
+```
+
+### 정수 내림차순으로 정리하기
+
+```js
+const solution = n => {
+  return parseInt(
+    Array.from(n.toString())
+      .sort((x, y) => y - x)
+      .join("")
+  );
+};
+```
+
+### 정수 제곱근 판별
+
+```js
+const solution = n => {
+  return Number.isInteger(Math.sqrt(n))
+    ? Math.trunc((Math.sqrt(n) + 1) ** 2)
+    : -1;
+};
+```
+
+### 가장 작은수 제거하기
+
+```js
+const solution = arr => {
+  const min = Math.min(...arr);
+  return arr.length !== 1 ? arr.filter(i => i !== min) : [-1];
 };
 ```
