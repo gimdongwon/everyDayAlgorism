@@ -351,3 +351,52 @@ function lcm(minNum, maxNum) {
   return (minNum * maxNum) / gcd(minNum, maxNum);
 }
 ```
+
+### JadenCase
+
+```js
+function solution(s) {
+  let result = [];
+  const newS = Array.from(s.toLowerCase());
+  result.push(newS[0].toUpperCase());
+  for (let i = 1; i < newS.length; i++) {
+    newS[i - 1] === " "
+      ? result.push(newS[i].toUpperCase())
+      : result.push(newS[i]);
+  }
+  return result.join("");
+}
+```
+
+## 코딩테스트 고득점 kit
+
+### 마라톤 완주
+
+```js
+const solution = (participant, completion) => {
+  const newPart = participant.sort();
+  const newComple = completion.sort();
+  for (let i = 0; i < participant.length; i++) {
+    if (newPart[i] !== newComple[i]) {
+      return newPart[i];
+    }
+  }
+};
+```
+
+### 전화번호 목록
+
+```js
+const solution = phoneBook => {
+  for (let i = 0; i < phoneBook.length; i++) {
+    for (let j = 1 + i; j < phoneBook.length; j++) {
+      if (
+        phoneBook[j].startsWith(phoneBook[i]) ||
+        phoneBook[i].startsWith(phoneBook[j])
+      )
+        return false;
+    }
+  }
+  return true;
+};
+```
