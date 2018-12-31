@@ -45,3 +45,24 @@ function solution(priorities, location) {
   }
 }
 ```
+
+```js
+function solution(priorities, location) {
+  const targetNum = priorities[location];
+  let answerKey = location + 1;
+  let count = 1;
+  while (1) {
+    if (priorities[0] === Math.max.apply(Math, priorities)) {
+      if (answerKey === 1) {
+        return count;
+      } else {
+        priorities.shift();
+        count++;
+      }
+    } else {
+      priorities.push(priorities.shift());
+    }
+    answerKey > 1 ? answerKey-- : (answerKey = priorities.length);
+  }
+}
+```
