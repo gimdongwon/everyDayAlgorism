@@ -66,3 +66,36 @@ function solution(priorities, location) {
   }
 }
 ```
+
+# 다리를 지나는 트럭
+
+````js
+function solution(bridge_length, weight, truck_weights) {
+    var answer = 0;
+    let total_truck_weight = 0;
+    let bridge_queue = [], weight_queue = [];
+    do {
+        // 다리를 건너는 트럭 이동
+        for(let i in bridge_queue) {
+            bridge_queue[i]--;
+        }
+        if(bridge_queue[0] == 0) {
+            total_truck_weight -= weight_queue.shift();
+            bridge_queue.shift();
+        }
+        // 다리가 견딜 수 있으면 트럭 1개 올리기
+        if(total_truck_weight + truck_weights[0] <= weight) {
+            weight_queue.push(truck_weights[0]);
+            bridge_queue.push(bridge_length);
+            total_truck_weight += truck_weights.shift();
+        }
+        answer++;
+    } while(bridge_queue.length > 0)
+    return answer;
+}
+    // truck_weight(대기트럭)을 passing_bridge에 추가해줌
+    // bridge_length초가 무조건 걸리는데 1초를 다른 트럭과 공유하는 가 안하는 가가 주요 point
+    // 지나가고 잇는 시간이 bridge의 길이를 통과했을 때 shift() 해주기
+    // truck_weights와 passing_bridege가 비웟다면
+    ```
+````
