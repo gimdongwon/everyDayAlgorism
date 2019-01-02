@@ -401,9 +401,8 @@ function solution(strings, n) {
 }
 
 function solution(strings, n) {
-  return strings.sort(
-    (s1, s2) =>
-      s1[n] === s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n])
+  return strings.sort((s1, s2) =>
+    s1[n] === s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n])
   );
 }
 ```
@@ -1008,4 +1007,27 @@ function solution(x) {
   let answer = [...newNum].reduce((acc, item) => acc + parseInt(item), 0);
   return x % answer === 0 ? true : false;
 }
+```
+
+## 체육복
+
+```js
+function solution(n, lost, reserve) {
+  let result = n;
+  let newReserve = reserve.filter(item => !lost.includes(item));
+  let newLost = lost.filter(item => !reserve.includes(item));
+  newReserve.forEach(item => {
+    let flag = newLost.includes(item - 1)
+      ? newLost.indexOf(item - 1)
+      : newLost.includes(item + 1)
+      ? newLost.indexOf(item + 1)
+      : null;
+    if (flag != null) {
+      newLost.splice(flag, 1);
+    }
+  });
+  result -= newLost.length;
+  return result;
+}
+// 도난 당해도 여유분이 있었다면 수업에 참가할 수 있음;;
 ```
