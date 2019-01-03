@@ -1031,3 +1031,37 @@ function solution(n, lost, reserve) {
 }
 // 도난 당해도 여유분이 있었다면 수업에 참가할 수 있음;;
 ```
+
+## k번 째 숫자
+
+```js
+function solution(array, commands) {
+  let result = [];
+  for (let i = 0; i < commands.length; i++) {
+    result.push(
+      array
+        .slice(
+          commands[i][0] - 1,
+          commands[i][1] > array.length
+            ? commands[i][1] - commands.length
+            : commands[i][1]
+        )
+        .sort((x, y) => x - y)[commands[i][2] - 1]
+    );
+  }
+  return result;
+}
+```
+
+## 별찍기
+
+```js
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", data => {
+  const n = data.split(" ");
+  const a = Number(n[0]),
+    b = Number(n[1]);
+  const star = "*".repeat(a) + `\n`;
+  console.log(star.repeat(b));
+});
+```
