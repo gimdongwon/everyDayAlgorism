@@ -279,3 +279,27 @@ function solution(n) {
   return parseInt([...a].sort((x, y) => y - x).join(""));
 }
 ```
+
+## 이상한 문자 만들기
+
+```js
+function solution(s) {
+  let newS = s.split(""),
+    count = 0,
+    result = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (newS[i] === " ") {
+      count = 0;
+      result.push(" ");
+    } else if (count % 2 === 0) {
+      result.push(newS[i].toUpperCase());
+      count++;
+    } else if (count % 2 === 1) {
+      result.push(newS[i].toLowerCase());
+      count++;
+    }
+  }
+  return result.join("");
+}
+```
