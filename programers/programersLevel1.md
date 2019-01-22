@@ -1070,36 +1070,55 @@ process.stdin.on("data", data => {
 
 ```js
 function solution(v) {
-    let answer = [];
-// 비트 연산자 이용
-    answer[0]= v[0][0]^v[1][0]^v[2][0];
-    answer[1]= v[0][1]^v[1][1]^v[2][1];
+  let answer = [];
+  // 비트 연산자 이용
+  answer[0] = v[0][0] ^ v[1][0] ^ v[2][0];
+  answer[1] = v[0][1] ^ v[1][1] ^ v[2][1];
 
-    // for문 이용
-//     for(let i=0; i<2; i++){
-//      if(v[0][i]==v[1][i]){
-//          answer[i]=v[2][i]
-//      }else if(v[0][i]==v[2][i]){
-//          answer[i]=v[1][i];
-//      }else if(v[1][i]==v[2][i]){
-//          answer[i]=v[0][i]
-//      }
-// }
-// 단순 하드코딩
-    // if(v[0][0]==v[1][0]){
-    //     answer[0] = v[2][0];
-    // }else if(v[0][0]==v[2][0]){
-    //     answer[0]= v[1][0];
-    // }else{
-    //     answer[0] = v[0][0];
-    // }
-    // if(v[0][1]==v[1][1]){
-    //     answer[1]=v[2][1];
-    // }else if(v[0][1]==v[2][1]){
-    //     answer[1]=v[1][1];
-    // }else{
-    //     answer[1] = v[0][1];
-    // }
-    return answer;
+  // for문 이용
+  //     for(let i=0; i<2; i++){
+  //      if(v[0][i]==v[1][i]){
+  //          answer[i]=v[2][i]
+  //      }else if(v[0][i]==v[2][i]){
+  //          answer[i]=v[1][i];
+  //      }else if(v[1][i]==v[2][i]){
+  //          answer[i]=v[0][i]
+  //      }
+  // }
+  // 단순 하드코딩
+  // if(v[0][0]==v[1][0]){
+  //     answer[0] = v[2][0];
+  // }else if(v[0][0]==v[2][0]){
+  //     answer[0]= v[1][0];
+  // }else{
+  //     answer[0] = v[0][0];
+  // }
+  // if(v[0][1]==v[1][1]){
+  //     answer[1]=v[2][1];
+  // }else if(v[0][1]==v[2][1]){
+  //     answer[1]=v[1][1];
+  // }else{
+  //     answer[1] = v[0][1];
+  // }
+  return answer;
+}
+```
+
+## 정수 제곱근 판별
+
+```js
+function solution(n) {
+  return Number.isInteger(Math.sqrt(n)) ? (Math.sqrt(n) + 1) ** 2 : -1;
+}
+```
+
+## 자릿수 더하기
+
+```js
+function solution(n) {
+  return n
+    .toString()
+    .split("")
+    .reduce((acc, item) => acc + parseInt(item), 0);
 }
 ```
