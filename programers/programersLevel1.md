@@ -1122,3 +1122,23 @@ function solution(n) {
     .reduce((acc, item) => acc + parseInt(item), 0);
 }
 ```
+
+## 최대 공약수, 최소 공배수
+
+```js
+function solution(n, m) {
+    let answer = [];
+    let j= 1;
+    const min = Math.min(n,m), max = Math.max(n,m);
+    for(let i=min; i>0; i--){
+        if(min%i===0&&max%i===0){
+            answer.push(i);
+            break;
+        }
+    }
+    // 최소 공배수 찾기
+    // max에 1곱하고 min이 계속해서 곱하는데 같은 값이 있으면 푸시 아니면 max에 곱하는 1증가
+    answer.push(max*min / answer[0])
+    return answer
+}
+```
