@@ -1142,3 +1142,51 @@ function solution(n, m) {
     return answer
 }
 ```
+
+## 예산
+
+```js
+function solution(d, budget) {
+    const newD = d.sort((x,y)=>x-y);
+    let result =[];
+    for(let i=0; i<d.length; i++){
+        if(budget>0&&budget>=newD[i]){
+            budget -=newD[i]
+            result.push(newD[i]);
+        }
+    }
+    return result.length
+}
+```
+
+```js
+function solution(answers) {
+    let first = [], second=[], third=[];
+    for(let i=0; i<2000; i++){
+        first.push(1,2,3,4,5);
+        second.push(2,1,2,3,2,4,2,5);
+        third.push(3,3,1,1,2,2,4,4,5,5);
+    }
+    let firstNum = 0, secondNum = 0, thirdNum = 0;
+    for(let i=0; i<answers.length; i++){
+        if(answers[i]===first[i]){
+            firstNum++
+        }
+        if(answers[i]===second[i]){
+            secondNum++
+        }
+        if(answers[i]===third[i]){
+            thirdNum++
+        }
+    }
+    let result = {1: firstNum, 2: secondNum, 3: thirdNum};
+    const maxNum = Math.max.apply(null,Object.values(result));
+    for(let i=1; i<4; i++){
+        if(result[i]!==maxNum){
+            delete result[i]
+        }
+    }
+    return Object.keys(result).map(item=>parseInt(item))
+    
+}
+```
