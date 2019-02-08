@@ -400,3 +400,23 @@ const solution = phoneBook => {
   return true;
 };
 ```
+
+## 체육복
+
+```js
+function solution(n, lost, reserve) {
+    let newLost = lost.filter(item=> !reserve.includes(item));
+    let newReserve = reserve.filter(item=> !lost.includes(item));
+    newReserve.forEach(item => {
+    let flag = newLost.includes(item - 1)
+      ? newLost.indexOf(item - 1)
+      : newLost.includes(item + 1)
+      ? newLost.indexOf(item + 1)
+      : null;
+    if (flag != null) {
+      newLost.splice(flag, 1);
+    }
+  });
+    return n - newLost.length
+}
+```
