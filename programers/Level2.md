@@ -241,3 +241,27 @@ function solution(num) {
   return answer;
 }
 ```
+
+## 쇠막대기
+
+```js
+function solution(arrangement) {
+  let stack = [];
+  let result = 0;
+  const newArr = [...arrangement];
+  for (let i = 0; i < newArr.length; i++) {
+    if (newArr[i] === "(") {
+      stack.push("(");
+    } else {
+      if (newArr[i - 1] === "(") {
+        stack.pop();
+        result += stack.length;
+      } else {
+        result += 1;
+        stack.pop();
+      }
+    }
+  }
+  return result;
+}
+```
