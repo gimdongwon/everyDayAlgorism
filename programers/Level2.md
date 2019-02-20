@@ -27,7 +27,8 @@ console.log(adder(3, 5));
 
 ### 문제 설명
 
-문자열 s 에는 공백으로 구분된 숫자들이 저장되어 있습니다. str 에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 (최소값) (최대값)형태의 문자열을 반환하는 함수, solution 을 완성하세요.
+문자열 s 에는 공백으로 구분된 숫자들이 저장되어 있습니다. str 에 나
+나는 숫자 중 최소값과 최대값을 찾아 이를 (최소값) (최대값)형태의 문자열을 반환하는 함수, solution 을 완성하세요.
 예를들어 s 가 1 2 3 4 라면 1 4 를 리턴하고, -1 -2 -3 -4 라면 -4 -1 을 리턴하면 됩니다.
 
 ### 제한 조건
@@ -261,6 +262,28 @@ function solution(arrangement) {
         stack.pop();
       }
     }
+  }
+  return result;
+}
+```
+
+## 탑
+
+```js
+function solution(heights) {
+  let result = [];
+  // 앞의 값이 현재 값보다 큰지 안큰지 비교후
+  // 크면 앞의 값 index를 넣고
+  // 안크면 앞앞의 값을 보고 반복
+  for (let i = heights.length - 1; i > -1; i--) {
+    let j = i - 1;
+    while (heights[i] > heights[j]) {
+      if (j == -1) {
+        break;
+      }
+      j--;
+    }
+    heights[i] < heights[j] ? result.unshift(j + 1) : result.unshift(0);
   }
   return result;
 }
