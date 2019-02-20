@@ -288,3 +288,23 @@ function solution(heights) {
   return result;
 }
 ```
+
+## 124
+
+```js
+function solution(n) {
+  let result = [];
+  while (n > 0) {
+    if (n % 3 === 0) {
+      n = n - 1;
+      result.unshift("4");
+    } else if (n % 3 === 1) {
+      result.unshift("1");
+    } else {
+      result.unshift("2");
+    }
+    n = Math.floor(n / 3);
+  }
+  return result.join("");
+}
+```
