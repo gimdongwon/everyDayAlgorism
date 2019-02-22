@@ -308,3 +308,65 @@ function solution(n) {
   return result.join("");
 }
 ```
+
+## 다음 큰 숫자
+
+알게된 것
+
+정규표현식 match는 내가 원하는 값을 적어서 맞춰줄 수 있음 `match(/1/gi)`
+
+```js
+function solution(n, a = n + 1) {
+  return n.toString(2).match(/1/gi).length === a.toString(2).match(/1/gi).length
+    ? a
+    : solution(a, a + 1);
+}
+
+function solution(n) {
+  let count = 0;
+  let result = n.toString(2);
+  for (let i = 0; i < result.length; i++) {
+    if (result[i] === "1") {
+      count++;
+    }
+  }
+  let target;
+  while (count !== target) {
+    target = 0;
+    n++;
+    result = n.toString(2);
+    for (let i = 0; i < result.length; i++) {
+      if (result[i] === "1") {
+        target++;
+      }
+    }
+  }
+  return n;
+}
+```
+
+## 스킬트리
+
+```js
+function solution(skill, skill_trees) {
+    let skillArr = [...skill], result = [];
+    // 스킬의 인덱스가 그 다음 스킬의 인덱스보다 크면 탈락
+    for(let i=0; i<skillArr.length; i++){
+        for(let j=0; j<skill_trees.length; j++){
+            skill_trees[j] = skill_trees[j].replace(skillArr[i], i+1);
+        }
+    }
+    for(let i=0; i<skill_trees.length; i++){
+        let origin = skill_trees[i].match(/\d/g).join("")
+        let newArr = skill_trees[i].match(/\d/g).sort((x,y)=> x-y).join("");
+        if(origin==newArr){
+            let j=1;
+            if(origin.includes(j)){
+               result.push(origin)
+               }
+        }
+    }
+    return result.length
+}
+런타임에러..
+```
