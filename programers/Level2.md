@@ -370,3 +370,40 @@ function solution(skill, skill_trees) {
 }
 런타임에러..
 ```
+
+## 기능 개발
+
+```js
+function solution (progresses, speeds){
+    let result = [], k=0, acc=0;
+    while(progresses.some(item=> item<100)){
+        for(let i=0; i<progresses.length; i++){
+            progresses[i]+=speeds[i]
+        }
+        if(progresses[k]>=100){
+            k++,acc++
+            if(k<progresses.length){
+                while(progresses[k]>=100){
+                    k++, acc++
+                    if(progresses[k]<100){
+                        result.push(acc)
+                        acc = 0
+                    }
+                }
+                if(acc!==0&&progresses[k]<100){
+                        result.push(acc)
+                        acc = 0
+                    }
+            }
+            if(k>=progresses.length){
+                result.push(acc)
+            }
+        }
+    }
+    return result
+}
+```
+
+> 어거지로 풀었다.. 모든 케이스들 확인하면서.. 이런 경우도 풀 수 있는 능력을 기르자!
+
+> 다른 풀이들도 엄청 깔끔한건 없었고 대부분 이런 식으로 해결하였다. 다만 접근방식이 조금 다를뿐!
