@@ -108,3 +108,37 @@ const solution = (genres, plays) => {
 ```
 
 > 드디어 해결했다!! 4일 걸렸다. Level3 클리어!
+
+## 기능개발 Level2
+
+```js
+function solution(progresses, speeds) {
+  // progresses에서 처음 인수가 100% 되었을 때의 날짜를 카운팅하여
+  // 100되면 acc를 더해주고 그 다음 것이 speeds + progresses인수를 넣어 계산했을 때
+  // 100이 넘거나 같으면 acc를 더해주는 방식으로 진행한다.
+  let result = [],
+    days = 0,
+    acc = 0;
+  for (let i = 0; i < speeds.length; i++) {
+    let workPercent = progresses[i] + speeds[i] * days;
+    while (workPercent < 100) {
+      workPercent += speeds[i];
+      days++;
+    }
+    acc++;
+    function check(k) {
+      if (progresses[k] + speeds[k] * days >= 100) {
+        acc++;
+        i++;
+        check(k + 1);
+      } else {
+        result.push(acc);
+        acc = 0;
+      }
+    }
+    // 그 다음 progresses return 값을 살펴보고 100 넘으면 acc ++ 아니면 result에 push
+    check(i + 1);
+  }
+  return result;
+}
+```
