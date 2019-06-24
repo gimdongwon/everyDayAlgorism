@@ -73,3 +73,38 @@ function solution(genres, plays) {
 > 전체 재생횟수를 더해서 가장 높은 장르부터 트는 것이었다.
 > 그래도 많이 접근했다. 코드는 구현해놓았으니 내일 다시보자.
 > 거의 2시간 했네
+
+```js
+const solution = (genres, plays) => {
+  let result = [],
+    nowPlayList = [...plays],
+    count = 0;
+  while (nowPlayList.length && genres.length) {
+    let maxNum = Math.max.apply(null, nowPlayList);
+    let nowIdx = plays.indexOf(maxNum);
+    result.push(nowIdx);
+    nowIdx = nowPlayList.indexOf(maxNum);
+    nowPlayList.splice(nowIdx, 1);
+    const nowGenres = genres.splice(nowIdx, 1).join();
+    if (genres.includes(nowGenres)) {
+      const genList = genres.reduce((acc, item, index) => {
+        if (item === nowGenres) {
+          acc.push(nowPlayList[index]);
+        }
+        return acc;
+      }, []);
+      nowIdx = plays.indexOf(Math.max.apply(null, genList));
+      result.push(nowIdx);
+      genres.splice(nowIdx, 1);
+      nowPlayList.splice(nowIdx, 1);
+      if (genres.includes(nowGenres)) {
+        genres = genres.filter(item => item !== nowGenres);
+      }
+    }
+    console.log(genres, nowPlayList, result);
+  }
+  return result;
+};
+```
+
+> 드디어 해결했다!! 4일 걸렸다. Level3 클리어!
