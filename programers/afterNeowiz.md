@@ -157,3 +157,33 @@ function solution(progresses, speeds) {
 > 1. 배열의 덧셈
 > 2. 김서방 찾기
 >    두 문제다 어렵지 않게 풀었으나 첫번째 문제에서 빈배열을 삽입하는 과정에서 나름 애를 먹었다.. for문으로 넣어줘서 해결하긴 했는데.. 찾아보자.
+
+다음은 어려웠던 중간값 string 비교문제이다
+
+```js
+const solution = (string, n) => {
+  return string.sort((x, y) => {
+    x[n] === y[n] ? x.localCompare(y) : x[n].localeCompare(y[n]);
+  });
+};
+```
+
+## 탑
+
+```js
+function solution(heights) {
+  let result = [];
+  for (let i = heights.length - 1; i >= 0; i--) {
+    for (let j = i - 1; j >= 0; j--) {
+      if (heights[j] > heights[i]) {
+        result.unshift(j + 1);
+        j = -1;
+      } else if (j === 0) {
+        result.unshift(0);
+      }
+    }
+  }
+  result.unshift(0);
+  return result;
+}
+```
