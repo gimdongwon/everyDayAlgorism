@@ -187,3 +187,33 @@ function solution(heights) {
   return result;
 }
 ```
+
+## 예산
+
+```js
+function solution(d, budget) {
+  // let newArray = d.sort();
+  // let result =0;
+  // for(let i=0; i<newArray.length; i++){
+  //     result += newArray[i]
+  //     console.log(result)
+  //     if(result===budget){
+  //         return i+1
+  //     }else if(result > budget){
+  //         return i
+  //     }
+  //     console.log(d)
+  // }
+  let result = 0;
+  d.sort((x, y) => x - y);
+  for (let i = 0; i < d.length; i++) {
+    if (d[i] <= budget) {
+      result++;
+      budget -= d[i];
+    } else {
+      return result;
+    }
+  }
+  return result;
+}
+```
