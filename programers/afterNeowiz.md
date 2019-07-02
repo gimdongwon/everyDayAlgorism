@@ -217,3 +217,15 @@ function solution(d, budget) {
   return result;
 }
 ```
+
+## 가장 큰 수
+
+```js
+function solution(numbers) {
+  const result = numbers
+    .map(item => item + "")
+    .sort((x, y) => (y + x) * 1 - (x + y) * 1)
+    .join("");
+  return result[0] === "0" ? "0" : result;
+}
+```
