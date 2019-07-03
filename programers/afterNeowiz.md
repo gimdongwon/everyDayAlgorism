@@ -229,3 +229,36 @@ function solution(numbers) {
   return result[0] === "0" ? "0" : result;
 }
 ```
+
+## 마이다스 아이티 연습문제
+
+```js
+1. 
+
+function solution(v) {
+    let result = [];
+    result[0]= v[0][0]===v[1][0] ? v[2][0] : v[0][0]===v[2][0] ? v[1][0] : v[0][0]
+    result[1]= v[0][1]===v[1][1] ? v[2][1] : v[0][1]===v[2][1] ? v[1][1] : v[0][1]
+    return result
+}
+
+2. 
+
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', data => {
+    const n = data.split(" ");
+    const a = Number(n[0]), b = Number(n[1]);
+    for(let i=0; i<b; i++){
+            console.log("*".repeat(a))
+    }
+});
+
+// const solution = (a,b)=> {
+//     for(let i=0; i<b; i++){
+//         for(let j=0; j<a; j++){
+//             console.log("*")
+//         }
+//     }
+// }
+
+```
