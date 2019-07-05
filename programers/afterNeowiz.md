@@ -233,24 +233,27 @@ function solution(numbers) {
 ## 마이다스 아이티 연습문제
 
 ```js
-1. 
+1;
 
 function solution(v) {
-    let result = [];
-    result[0]= v[0][0]===v[1][0] ? v[2][0] : v[0][0]===v[2][0] ? v[1][0] : v[0][0]
-    result[1]= v[0][1]===v[1][1] ? v[2][1] : v[0][1]===v[2][1] ? v[1][1] : v[0][1]
-    return result
+  let result = [];
+  result[0] =
+    v[0][0] === v[1][0] ? v[2][0] : v[0][0] === v[2][0] ? v[1][0] : v[0][0];
+  result[1] =
+    v[0][1] === v[1][1] ? v[2][1] : v[0][1] === v[2][1] ? v[1][1] : v[0][1];
+  return result;
 }
 
-2. 
+2;
 
-process.stdin.setEncoding('utf8');
-process.stdin.on('data', data => {
-    const n = data.split(" ");
-    const a = Number(n[0]), b = Number(n[1]);
-    for(let i=0; i<b; i++){
-            console.log("*".repeat(a))
-    }
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", data => {
+  const n = data.split(" ");
+  const a = Number(n[0]),
+    b = Number(n[1]);
+  for (let i = 0; i < b; i++) {
+    console.log("*".repeat(a));
+  }
 });
 
 // const solution = (a,b)=> {
@@ -260,5 +263,44 @@ process.stdin.on('data', data => {
 //         }
 //     }
 // }
+```
 
+## 구명보트
+
+```js
+function solution(people, limit) {
+  let maxIdx = people.length - 1,
+    minIdx = 0,
+    num = 0;
+  people.sort((x, y) => x - y);
+  while (minIdx < maxIdx) {
+    if (people[minIdx] + people[maxIdx] <= limit) {
+      minIdx++;
+      maxIdx--;
+      num++;
+    } else {
+      maxIdx--;
+    }
+  }
+
+  return people.length - num;
+}
+```
+
+## 폰켓몬
+
+```js
+function solution(nums) {
+  let picked = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (!picked.includes(nums[i])) {
+      picked.push(nums[i]);
+    }
+  }
+  if (picked.length >= nums.length / 2) {
+    return nums.length / 2;
+  } else {
+    return picked.length;
+  }
+}
 ```
