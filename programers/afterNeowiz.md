@@ -304,3 +304,81 @@ function solution(nums) {
   }
 }
 ```
+
+## 쇠막대기
+
+```js
+function solution(arrangement) {
+  let stack = [],
+    result = 0,
+    newArr = [...arrangement];
+  for (let i = 0; i < newArr.length; i++) {
+    if (newArr[i] === "(") {
+      stack.push("(");
+    } else {
+      stack.pop();
+      if (newArr[i - 1] === "(") {
+        result += stack.length;
+      } else {
+        result++;
+      }
+    }
+  }
+  return result;
+}
+```
+
+## 스킬트리
+
+```js
+function solution(skill, skill_trees) {
+  let result = 0;
+  const skillArr = [...skill];
+  for (let i = 0; i < skill_trees.length; i++) {
+    const treesArr = [...skill_trees[i]];
+    const newTrees = treesArr.filter(item => skillArr.includes(item)).join("");
+    let newSkillArr = [];
+    for (let j = 1; j <= skill.length; j++) {
+      newSkillArr.push(skill.slice(0, j));
+    }
+    if (newSkillArr.includes(newTrees)) {
+      result++;
+    } else if (newTrees === "") {
+      result++;
+    }
+  }
+  return result;
+
+  // 아래는 내가 생각해낸 풀이인데 위에 풀이가 조금 더 깔끔한 거 같다..
+  // 아래 방법으로 풀려면 보충해야될 부분이 훨씬 많은 것 같다.
+
+  // const skillArr = [...skill];
+  // let result = 0;
+  // for(let j=0; j<skill_trees.length; j++){
+  //     let arr = [], sortArr=[], checkArr=[];
+  //     for(let i=0; i<skillArr.length; i++){
+  //         const item = skill_trees[j].indexOf(skillArr[i])
+  //         arr.push(item)
+  //         sortArr.push(item)
+  //         checkArr.push(item)
+  //     }
+  //     sortArr.sort((x,y)=> x-y)
+  //     console.log(arr, sortArr)
+  //     const item = arr.indexOf(-1);
+  //     if(item!==-1){
+  //         checkArr.fill(-1, item, checkArr.length)
+  //         console.log(checkArr)
+  //     }
+  //     if(arr.includes(-1)&&arr.join("")===checkArr.join("")){
+  //         result++
+  //       }
+  //     else if(arr.join("")===sortArr.join("")&&arr.join("")===checkArr.join("")){
+  //         result++
+  //         console.log("이거다")
+  //     }else if(arr===checkArr){
+  //         result++
+  //     }
+  // }
+  // return result
+}
+```
