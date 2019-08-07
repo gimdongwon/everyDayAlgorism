@@ -382,3 +382,49 @@ function solution(skill, skill_trees) {
   // return result
 }
 ```
+
+## 소수 만들기
+
+```js
+const solution = nums => {
+  let result = 0;
+  const prime = number => {
+    for (let i = 2; i < number; i++) {
+      if (number % i === 0) {
+        return false;
+      }
+    }
+    return true;
+  };
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      for (let k = j + 1; k < nums.length; k++) {
+        if (prime(nums[i] + nums[j] + nums[k])) {
+          result++;
+        }
+      }
+    }
+  }
+  return result;
+};
+```
+
+## 행렬의 곱셈
+
+```js
+function solution(A, B) {
+  let answer = [];
+  for (let i = 0; i < A.length; i++) {
+    answer.push([]);
+  }
+  for (let i = 0; i < A.length; i++) {
+    for (let j = 0; j < B[0].length; j++) {
+      for (let k = 0; k < A[0].length; k++) {
+        if (answer[i][j] == undefined) answer[i][j] = 0;
+        answer[i][j] += A[i][k] * B[k][j];
+      }
+    }
+  }
+  return answer;
+}
+```
