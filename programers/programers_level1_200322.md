@@ -163,3 +163,70 @@ function solution(s) {
     return lowerText.concat(upperText).join("")
 }
 ```
+
+3. 완주하지 못한 선수
+
+```js
+function solution(participant, completion) {
+    participant.sort();
+    completion.sort();
+    for(let i=0; i<participant.length ; i++){
+        if(participant[i]!==completion[i]){
+            return participant[i]
+        }
+        completion.splice(i, 1, null)
+    }
+}
+```
+
+4. 모의고사
+
+```js
+function solution(answers) {
+    let first = [1,2,3,4,5];
+    let second = [2,1,2,3,2,4,2,5];
+    let third = [3,3,1,1,2,2,4,4,5,5];
+    let firstScore =0, secondScore=0, thirdScore=0;
+    for(let i=0; i<answers.length; i++){
+        let firstI = i%5;
+        let secondI = i%8;
+        let thirdI = i%10;
+        if(answers[i]===first[firstI]){
+            firstScore++
+        }
+        if(answers[i]===second[secondI]){
+            secondScore++
+        }
+        if(answers[i]===third[thirdI]){
+            thirdScore++
+        }
+    }
+    
+    const scores = [firstScore, secondScore, thirdScore];
+    const maxScore = Math.max.apply(null, scores);
+    let result = [];
+    for(let i=0; i<scores.length; i++){
+        if(maxScore===scores[i]){
+            result.push(i+1)
+        }
+    }
+    return result
+}
+```
+
+5. 문자열 다루기 기본
+
+```js
+function solution(s) {
+    const temp = parseInt(s)
+    if (temp==s && s.length === 4 || s.length===6){
+        return true
+    }else{
+        return false
+    }
+}
+function solution2(s) {
+    var regex = /^\d{6}$|^\d{4}$/;
+  return regex.test(s);
+}
+```
