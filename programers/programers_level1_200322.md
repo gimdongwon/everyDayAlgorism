@@ -230,3 +230,184 @@ function solution2(s) {
   return regex.test(s);
 }
 ```
+
+6. 김서방 찾기
+
+```js
+function solution(seoul) {
+    const index = seoul.indexOf("Kim")
+    return `김서방은 ${index}에 있다`
+}
+```
+
+7. 수박수박수
+
+```js
+function solution(n) {
+    const result = "수박".repeat(5000);
+    return result.slice(0, n)
+}
+```
+
+8. 같은 숫자는 싫어
+
+```js
+function solution(arr){
+    let result = [];
+    for(let i=0; i-1<arr.length; i++){
+        if(arr[i]!==arr[i+1]){
+            result.push(arr[i])
+        }
+    }
+    return result
+}
+```
+
+9. 가운데 글자 가져오기
+
+```js
+function solution(s) {
+    const idx = Math.trunc(s.length/2)
+    return  s.slice(s.length%2===0 ? idx-1 : idx, idx+1)
+}
+```
+
+10. 두 정수의 합
+
+```js
+function solution(a, b) {
+    let result = 0, x, y;
+    if(a===b) return a;
+    if(a>b){
+        x=a;
+        y=b
+    }else{
+        x=b;
+        y=a;
+    }
+    for(let i=y; i<=x; i++){
+        result+=i
+    }
+    return result
+}
+```
+
+11. 약수의 합
+
+```js
+function solution(n) {
+    if(!n) return 0;
+    let result = 1;
+    for(let i=2; i<=n; i++){
+        if(n%i===0){
+            result+=i
+        }
+    }
+    return result
+}
+```
+
+12. 나누어 떨어지는 숫자 배열
+
+```js
+function solution(arr, divisor) {
+    let result = [];
+    for(let i=0; i<arr.length; i++){
+        if(arr[i]%divisor===0){
+            result.push(arr[i])
+        }
+    }
+    if(!result.length) result.push(-1)
+    return result.sort((x,y)=> x-y);
+}
+```
+
+13. 소수 찾기
+
+```js
+// 실패
+// 함수 분리 성공햇으나 효율성
+
+function solution(n) {
+    let result = 0;
+    for(let i=2; i<=n; i++){
+        const check = primaryNumCheck(i);
+        if(check){
+            result+=check
+        }
+    }
+    return result
+}
+
+const primaryNumCheck = num => {
+    let score = 0;
+    for(let i=2; i<=num; i++){
+        if(num%i===0){
+            score++
+        }
+    }
+    if(score===1) return score;
+}
+
+// 성공
+// 예전 근환이형 코드 가독성이 떨어지나 n수 이하의 소수를 가져올 떄 사용하면 유용할듯
+
+function solution(n) {
+  let token = [];
+  let answer = [];
+  for (let i = 2; i <= n; ++i) {
+      console.log(token)
+    if (!token[i]) {
+      answer.push(i);
+      for (let j = i * 2; j <= n; j += i) {
+        token[j] = true;
+      }
+    }
+  }
+  return answer.length;
+}
+```
+
+14. 자릿수 더하기
+
+```js
+function solution(n){
+    const target = n.toString().split('');
+    let result = 0;
+    for(let i=0; i<target.length; i++){
+        result += parseInt(target[i])
+    }
+    return result
+}
+```
+
+15. 자연수 뒤집어 배열로 만들기
+
+```js
+function solution(n) {
+    let target = [...n.toString()].reverse();
+    for(let i=0; i<target.length; i++){
+        target[i] = parseInt(target[i])
+    }
+    return target
+}
+```
+
+16. 이상한 숫자 만들기
+
+```js
+function solution(s) {
+    let target = s.split(" "), result=[];
+    for(let i=0; i<target.length; i++){
+        for(let j=0; j<target[i].length; j++){
+            if(j%2===0){
+                result.push(target[i][j].toUpperCase())
+            }else{
+                result.push(target[i][j].toLowerCase())
+            }
+        }
+        if(i!==target.length-1) result.push(" ");
+    }
+    return result.join('')
+}
+```
