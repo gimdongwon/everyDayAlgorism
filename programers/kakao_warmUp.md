@@ -401,7 +401,7 @@ const solution = phoneBook => {
 };
 ```
 
-## 체육복
+## 육복
 
 ```js
 function solution(n, lost, reserve) {
@@ -419,4 +419,4 @@ function solution(n, lost, reserve) {
   });
     return n - newLost.length
 }
-```
+```s
