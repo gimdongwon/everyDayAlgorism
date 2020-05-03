@@ -95,7 +95,30 @@ function solution(k, room_number) {
 
 효율성 탈락.
 
-5. 징검다리
+정답.
+
+```js
+const find_empty_room = (x, rooms) =>{
+    if(!rooms.get(x)){
+        rooms.set(x, x+1);
+        return x
+    }
+    let p = find_empty_room(rooms.get(x), rooms);
+    rooms.set(x, p+1);
+    return p
+}
+
+const solution = (x, room_number) => {
+    let rooms = new Map(), answer=[];
+    for(let i=0; i<room_number.length; i++){
+        let empty_room = find_empty_room(room_number[i], rooms);
+        answer.push(empty_room)
+    }
+    return answer
+}
+```
+
+1. 징검다리
 
 ```js
 function solution(stones, k) {
