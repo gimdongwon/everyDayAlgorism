@@ -31,6 +31,26 @@ function solution(board, moves) {
 }
 ```
 
+2. 튜플
+
+```js
+const solution = (s)=> {
+    const sets = s
+        .slice(2, s.length-2)
+        .split("},{")
+        .map(el=> el.split(","))
+        .sort((x,y)=>x.length-y.length)
+    let result = [...sets[0]]
+    for(let i=1; i<sets.length; i++){
+        for (const r of result){
+            sets[i] = sets[i].filter(set => set!==r)
+        }
+        result.push(...sets[i])
+    }
+    return result.map(item=> parseInt(item))
+}
+```
+
 3. 카카오 이모티콘
 
 ```js
