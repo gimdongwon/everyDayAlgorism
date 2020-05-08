@@ -162,3 +162,41 @@ function solution(stones, k) {
     }
 }
 ```
+
+## 2020 문자열 압축
+
+```js
+function solution(s) {
+    let result = [], target=[];
+    for(let i=1; i<s.length/2+1; i++){
+        let j=0, k=i, strArr=[];
+        while(j<s.length){
+            strArr.push(s.slice(j, k))
+            j+=i
+            k+=i
+        }
+        // console.log(strArr)
+        let currentLeng=1, newArr=[];
+        for(let p=0; p<strArr.length-1; p++){
+            if(strArr[p]===strArr[p+1]){
+                currentLeng++
+            }else{
+                if(currentLeng===1){
+                    newArr.push(strArr[p])
+                }else{
+                    newArr.push(currentLeng)
+                    newArr.push(strArr[p])
+                    currentLeng = 1;
+                }
+            }
+            if(p===strArr.length-2){
+                if(currentLeng!==1) newArr.push(currentLeng);
+                // newArr.push(strArr[p])
+                newArr.push(strArr[p+1])
+            }
+        }
+        result.push(newArr.join("").length)
+    }
+    return Math.min.apply(null, result)
+}
+```
