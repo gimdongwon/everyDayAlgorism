@@ -168,6 +168,7 @@ function solution(stones, k) {
 ```js
 function solution(s) {
     let result = [], target=[];
+    if(s.length===1) return 1;
     for(let i=1; i<s.length/2+1; i++){
         let j=0, k=i, strArr=[];
         while(j<s.length){
@@ -198,5 +199,32 @@ function solution(s) {
         result.push(newArr.join("").length)
     }
     return Math.min.apply(null, result)
+}
+```
+
+## 2020 괄호 변환
+
+```js
+function solution(p) {
+    if(!p) return '';
+    let q=0, result=[];
+    for(let i=0; i<p.length; i++){
+        if(p[i]===")"){
+            if(q<=0){
+                result.push("(")
+            }else{
+                result.push(")")
+            }
+            q--
+        }else{
+            if(q>=0){
+                result.push("(")
+            }else{
+                result.push(")")
+            }
+            q++
+        }
+    }
+    return result.join("")
 }
 ```
